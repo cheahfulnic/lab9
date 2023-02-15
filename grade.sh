@@ -2,13 +2,7 @@ CPATH='.:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar'
 
 rm -rf student-submission 
 git clone $1 student-submission
-if [[$? -eq 0]]
-then
-    echo 'Finished cloning'
-else
-    echo "Cloning failed"
-    exit
-fi
+echo 'Finished cloning'
 
 cd student-submission
 if [[-f ListExamples.java]]
@@ -30,12 +24,14 @@ then
         if [[$? -neq 0]]
         then
             echo "filter method not found"
+            exit
         fi
         grep "static List<String> merge(List<String> list1, List<String> list2)" ListExamples > merge.txt
         test -s merge.txt
         if [[$? -neq 0]]
         then
             echo "merge method not found"
+            exit
         fi
 
         java -cp CPATH org.junit.runner.JUNITCore TestList 2>JUnitError.txt
