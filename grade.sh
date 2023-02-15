@@ -15,7 +15,7 @@ if [[ -f ListExamples.java ]]
 then
 
     echo "ListExamples.java found"
-    cp ../TestListExamples.java student-submission 
+    cp student-submission ../TestListExamples.java
     javac -cp CPATH TestListExamples.java ListExamples.java  2>compileError.txt
 
     if [[ $? -ne 0 ]] #assumes javac TestListExamples.java gives error code = 0
