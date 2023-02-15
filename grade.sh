@@ -16,9 +16,9 @@ then
 
     echo "ListExamples.java found"
     cp ../TestListExamples.java student-submission 
-    javac -cp CPATH TestList.java ListExamples.java  2>compileError.txt
+    javac -cp CPATH TestListExamples.java ListExamples.java  2>compileError.txt
 
-    if [[ $? -ne 0 ]] #assumes javac TestList.java gives error code = 0
+    if [[ $? -ne 0 ]] #assumes javac TestListExamples.java gives error code = 0
     then
 
         cat compileError.txt
@@ -40,7 +40,7 @@ then
             exit
         fi
 
-        java -cp CPATH org.junit.runner.JUNITCore TestList 2>JUnitError.txt
+        java -cp CPATH org.junit.runner.JUNITCore TestListExamples 2>JUnitError.txt
         if [[ $? -ne 0 ]]
         then
 
