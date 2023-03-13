@@ -35,18 +35,18 @@ then
             echo "ListExamples class not found"
             exit
         fi
-        grep "static List<String> filter(" ListExamples.java > filter.txt
+        grep "static List<String> filter(List<String>" ListExamples.java > filter.txt
         test -s filter.txt
         if [[ $? -ne 0 ]]
         then
-            echo "filter method not found"
+            echo "filter method incorrect/not found"
             exit
         fi
-        grep "static List<String> merge(" ListExamples.java > merge.txt
+        grep "static List<String> merge(List<String>" ListExamples.java > merge.txt
         test -s merge.txt
         if [[ $? -ne 0 ]]
         then
-            echo "merge method not found"
+            echo "merge method incorrect/not found"
             exit
         fi
 
