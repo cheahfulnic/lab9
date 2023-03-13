@@ -4,7 +4,7 @@ git clone $1 student-submission
 if [[ $? -eq 0 ]]
 then
 
-    echo 'Finished cloning'
+    echo "Finished cloning"
 
 else
 
