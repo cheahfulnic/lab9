@@ -1,6 +1,6 @@
 CPATH='.:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar'
 
-rm -rf student-submission *.txt *.class ListExamples.java
+rm -rf student-submission
 git clone $1 student-submission
 if [[ $? -eq 0 ]]
 then
@@ -15,9 +15,10 @@ if [[ -f ListExamples.java ]]
 then
 
     echo "ListExamples.java found"
-    cp ListExamples.java ../
-    cd ..
-    javac -cp $CPATH TestListExamples.java ListExamples.java  2>compileError.txt
+    cp ../TestListExamples.java ./
+    cp -r ../lib ./
+
+    javac -cp $CPATH *.java  2> compileError.txt
 
     if [[ $? -ne 0 ]] #assumes javac TestListExamples.java gives error code = 0
     then
@@ -27,30 +28,42 @@ then
 
     else
 
-        #grep "static List<String> filter(List<String> s, StringChecker sc)" ListExamples.java > filter.txt
-        #test -s filter.txt
-        #if [[ $? -ne 0 ]]
-        #then
-        #    echo "filter method not found"
-        #    exit
-        #fi
-        #grep "static List<String> merge(List<String> list1, List<String> list2)" ListExamples > merge.txt
-        #test -s merge.txt
-        #if [[ $? -ne 0 ]]
-        #then
-        #    echo "merge method not found"
-        #    exit
-        #fi
-
-        java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 1>JUnitError.txt
+        grep "class ListExamples {" ListExamples.java > class.txt
+        test -s class.txt
         if [[ $? -ne 0 ]]
         then
+            echo "ListExamples class not found"
+            exit
+        fi
+        grep "static List<String> filter(" ListExamples.java > filter.txt
+        test -s filter.txt
+        if [[ $? -ne 0 ]]
+        then
+            echo "filter method not found"
+            exit
+        fi
+        grep "static List<String> merge(" ListExamples.java > merge.txt
+        test -s merge.txt
+        if [[ $? -ne 0 ]]
+        then
+            echo "merge method not found"
+            exit
+        fi
+
+        java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 1>JUnitError.txt
+        FAILURES=$(grep -l "FAILURES\!\!\!" JUnitError.txt)
+        if [[ $FAILURES == "JUnitError.txt" ]]
+        then
+
+            TEST_COUNT=$(awk '/Tests run:/ {gsub(",", ""); print $3}' JUnitError.txt)
+            FAILURE_COUNT=$(awk '/Tests run:/ {gsub(",", ""); print $5}' JUnitError.txt)
+
 
             echo "Test(s) has/have failed"
-            cat JUnitError.txt
-        
+            echo $FAILURE_COUNT "of" $TEST_COUNT "tests failed."
+
         else
-            echo "All test(s) has/have passed"
+            echo "All tests have passed"
         fi
         
     fi
