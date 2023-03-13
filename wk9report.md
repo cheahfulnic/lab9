@@ -57,6 +57,34 @@ By typing the bash command, followed by a shell script and a repository URL: `ba
 * Prints "ListExamples.java not found" if the ListExamples.java file doesn't exist in student-submission.
 
 
+## Testing the grading script
+* Below are a couple of links to example student submissions and a screenshot of the grading script's output.
+
+1. [https://github.com/ucsd-cse15l-f22/list-methods-lab3](https://github.com/ucsd-cse15l-f22/list-methods-lab3) - same code as lab3.
+![image](https://raw.githubusercontent.com/cheahfulnic/lab9/main/wk9-ss/week9-8.png)
+* Output: shows that the test has failed with a score.
 
 
+2. [https://github.com/ucsd-cse15l-f22/list-methods-corrected](https://github.com/ucsd-cse15l-f22/list-methods-corrected) - corrected code.
+![image](https://raw.githubusercontent.com/cheahfulnic/lab9/main/wk9-ss/week9-9.png)
+* Output: shows that all tests have passed.
 
+
+3. [https://github.com/ucsd-cse15l-f22/list-methods-compile-error](https://github.com/ucsd-cse15l-f22/list-methods-compile-error) - syntax error.
+![image](https://raw.githubusercontent.com/cheahfulnic/lab9/main/wk9-ss/week9-10.png)
+* Output shows the line that has the syntax error.
+
+
+4. [https://github.com/ucsd-cse15l-f22/list-methods-signature](https://github.com/ucsd-cse15l-f22/list-methods-signature) - wrongly ordered arguments in the filter method.
+![image](https://raw.githubusercontent.com/cheahfulnic/lab9/main/wk9-ss/week9-11.png)
+* Output: shows that the filter method is incorrect.
+
+
+5. [https://github.com/ucsd-cse15l-f22/list-methods-filename](https://github.com/ucsd-cse15l-f22/list-methods-filename) - incorrectly named file.
+![image](https://raw.githubusercontent.com/cheahfulnic/lab9/main/wk9-ss/week9-12.png)
+* Output: shows that the ListExamples.java file can't be found.
+
+
+6. [https://github.com/ucsd-cse15l-f22/list-methods-nested](https://github.com/ucsd-cse15l-f22/list-methods-nested) - ListExamples.java saved in a nested directory.
+![image](https://raw.githubusercontent.com/cheahfulnic/lab9/main/wk9-ss/week9-13.png)
+* Output: shows that the ListExamples.java file can't be found.
