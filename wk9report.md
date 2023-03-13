@@ -1,4 +1,4 @@
-# Topic: Writing an Automatic Grader
+# Topic: Writing and Testing an Automatic Grader
 For this week's lab report, I'll be going back to lab6 to complete my grading script, explain each block of code, and use it on several files.
 
 
